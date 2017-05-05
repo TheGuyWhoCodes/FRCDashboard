@@ -28,7 +28,7 @@ var ui = {
     autoSelect: document.getElementById('auto-select'),
     armPosition: document.getElementById('arm-position')
 };
-let address = document.getElementById('connect-address'), 
+let address = document.getElementById('connect-address'),
     connect = document.getElementById('connect');
 
 // Sets function to be called on NetworkTables connect. Commented out because it's usually not necessary.
@@ -80,7 +80,7 @@ function onRobotConnection(connected) {
             connect.disabled = false;
             connect.firstChild.data = "Connect";
             // Add the default address and select xxxx
-            address.value = "roborio-xxxx.local";
+            address.value = "roborio-1806-frc.local";
             address.focus();
             address.setSelectionRange(8, 12);
             // On click try to connect and disable the input and the button
@@ -134,7 +134,7 @@ NetworkTables.addKeyListener('/SmartDashboard/example_variable', (key, value) =>
     ui.example.readout.data = 'Value is ' + (value ? 'true' : 'false');
 });
 
-NetworkTables.addKeyListener('/SmartDashboard/time_running', (key, value) => {
+NetworkTables.addKeyListener('/LiftTracker/time', (key, value) => {
     // Sometimes, NetworkTables will pass booleans as strings. This corrects for that.
     if (typeof value === 'string')
         value = value === "true";
